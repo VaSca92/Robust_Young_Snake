@@ -1,0 +1,21 @@
+﻿<Window x:Class="SnakeGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakeGame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="800" Keyboard.KeyDown="read_keyboard_input">
+    
+    <DockPanel>
+
+        <Label DockPanel.Dock="Top" x:Name="debug_console" Width="512" Height="32" FontFamily="Courier new"
+               Background="Black" Foreground="White" FontSize="16" HorizontalContentAlignment="Center">Debug Console</Label>
+        
+        <UniformGrid DockPanel.Dock="Bottom" x:Name="main_grid" Height="512" Width="512">
+            
+        </UniformGrid>
+        
+    </DockPanel>
+    
+</Window>
