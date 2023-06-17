@@ -8,15 +8,13 @@ namespace SnakeGame
     {
 
         public List<Vector2D> position = new List<Vector2D>();
-
-        public static readonly int row_num = 8;
-        public static readonly int col_num = 8;
-        private static readonly Vector2D PERIODICITY = new Vector2D(row_num, col_num);
+        private readonly Vector2D PERIODICITY;
 
         public Vector2D direction = new Vector2D(1, 0);
 
-        public Snake()
+        public Snake(int row_num, int col_num)
         {
+            PERIODICITY = new Vector2D(row_num, col_num);
             for (int i = 0; i < 4; i++)
             {   this.position.Add(new Vector2D(i, 2)); }
         }

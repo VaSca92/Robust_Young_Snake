@@ -16,11 +16,14 @@ namespace SnakeGame
         private static readonly SolidColorBrush EMPTY_TILE_COLOR = new SolidColorBrush(Color.FromRgb(100, 100, 150));
         private static readonly SolidColorBrush SNAKE_TILE_COLOR = new SolidColorBrush(Color.FromRgb(100, 150, 100));
 
+        public static readonly int row_num = 8;
+        public static readonly int col_num = 8;
+
         private int counter = 0;
 
-        private Rectangle[,] tiles = new Rectangle[Snake.row_num, Snake.col_num];
+        private Rectangle[,] tiles = new Rectangle[row_num, col_num];
 
-        private Snake snake = new Snake();
+        private Snake snake = new Snake(row_num, col_num);
 
         public MainWindow()
         {
@@ -44,9 +47,9 @@ namespace SnakeGame
 
         private void init_game_grid()
         {
-            for (int row = 0; row < Snake.row_num; row++)
+            for (int row = 0; row < row_num; row++)
             {
-                for (int col = 0; col < Snake.col_num; col++)
+                for (int col = 0; col < col_num; col++)
                 {
                     this.tiles[row, col] = new Rectangle();
                     this.tiles[row, col].Margin = new Thickness(1);
