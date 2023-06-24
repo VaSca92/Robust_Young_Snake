@@ -19,7 +19,9 @@ namespace SnakeGame
             {   this.position.Add(new Vector2D(i, 2)); }
         }
 
-        public void move()
+        //Input direzione
+
+        public void move(Vector2D direction)
         {
             Vector2D head = position[position.Count - 1];
             this.position.Add( (head + direction) % PERIODICITY);
