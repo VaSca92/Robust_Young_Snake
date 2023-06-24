@@ -39,35 +39,9 @@ namespace SnakeGame
 
         private void update(object? sender, EventArgs? e)
         {
-            
-            if(debug_console.Content.ToString().Equals("S")){
-                Vector2D direction = new Vector2D(0, 1); //Giu' = 0,1
-                this.snake.move(direction);
-            } 
-            else if(debug_console.Content.ToString().Equals("W")){
-                Vector2D direction = new Vector2D(0, -1); //Sopra = 0, -1
-                this.snake.move(direction);
-            }
-            else if(debug_console.Content.ToString().Equals("A")){
-                Vector2D direction = new Vector2D(-1, 0); //Sinistra = -1, 0
-                this.snake.move(direction);
-            }else {
-                Vector2D direction = new Vector2D(1, 0); //Destra = 1,0
-                this.snake.move(direction);
-            }
-            
+            this.snake.move();
             foreach (Rectangle tile in this.tiles) { tile.Fill = EMPTY_TILE_COLOR; }
-            foreach (Vector2D point in this.snake.position) {
-                //Normalizzo la direzione in base alla griglia.
-                //Se il serpente esce fuori dal bordo, coloro la parte opposta
-                if(point.y == -1){
-                    point.y=7;
-                }
-                if(point.x == -1) {
-                    point.x = 7;
-                }
-                 this.tiles[point.y, point.x].Fill = SNAKE_TILE_COLOR; 
-            }
+            foreach (Vector2D point in this.snake.position) { this.tiles[point.y, point.x].Fill = SNAKE_TILE_COLOR; }
         }
 
 
