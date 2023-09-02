@@ -16,15 +16,33 @@ namespace SnakeGame
         {
             PERIODICITY = new Vector2D(row_num, col_num);
             for (int i = 0; i < 4; i++)
-            {   this.position.Add(new Vector2D(i, 2)); }
+            { this.position.Add(new Vector2D(i, 2)); }
         }
 
-        public void move()
+        //Input direzione
+
+        public void move(Vector2D direction)
         {
             Vector2D head = position[position.Count - 1];
-            this.position.Add( (head + direction) % PERIODICITY);
-            this.position.RemoveAt(0);
-        }
+            this.position.Add((head + direction) % PERIODICITY);
 
+            for (int i = 0; i < this.position.Count; i++)
+            {
+                for (int j = 0; j < this.position.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        if (this.position[i].x == this.position[j].x && this.position[i].y == this.position[j].y)
+                        {
+                            System.Environment.Exit(0);
+                        }
+                    }
+                }
+            }
+
+
+            this.position.RemoveAt(0);
+
+        }
     }
 }
