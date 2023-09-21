@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main - Victoria\\SnakeGame\\SnakeGame.csproj",
+      "projectUniqueName": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main\\SnakeGame\\SnakeGame.csproj",
       "projectName": "SnakeGame",
-      "projectPath": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main - Victoria\\SnakeGame\\SnakeGame.csproj",
+      "projectPath": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main\\SnakeGame\\SnakeGame.csproj",
       "packagesPath": "C:\\Users\\Victoria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main - Victoria\\SnakeGame\\obj\\",
+      "outputPath": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main\\SnakeGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Victoria\\AppData\\Roaming\\NuGet\\NuGet.Config",

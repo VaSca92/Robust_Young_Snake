@@ -40,11 +40,3 @@ C:\Users\Victoria\Downloads\Robust_Young_Snake-main\SnakeGame\obj\Debug\net6.0-w
 C:\Users\Victoria\Downloads\Robust_Young_Snake-main\SnakeGame\obj\Debug\net6.0-windows\SnakeGame.pdb
 C:\Users\Victoria\Downloads\Robust_Young_Snake-main\SnakeGame\obj\Debug\net6.0-windows\SnakeGame.genruntimeconfig.cache
 C:\Users\Victoria\Downloads\Robust_Young_Snake-main\SnakeGame\obj\Debug\net6.0-windows\ref\SnakeGame.dll
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\SnakeGame.csproj.AssemblyReference.cache
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\App.g.cs
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\SnakeGame_MarkupCompile.cache
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\SnakeGame_MarkupCompile.lref
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\SnakeGame.dll
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\refint\SnakeGame.dll
-C:\Users\Victoria\Downloads\Robust_Young_Snake-main - Victoria\SnakeGame\obj\Debug\net6.0-windows\SnakeGame.pdb
