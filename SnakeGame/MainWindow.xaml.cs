@@ -75,7 +75,6 @@ namespace SnakeGame
                 if (((SolidColorBrush)tile.Fill).Color != FOOD.Color) //Evito di cancellare il cibo
                     tile.Fill = EMPTY_TILE_COLOR;
             }
-
             foreach (Vector2D point in this.snake.position)
             {
                 //Normalizzo la direzione in base alla griglia.
@@ -158,22 +157,10 @@ namespace SnakeGame
                 foodSpawned = false;
                 counter++;
             }
-        }
+            if (!foodSpawned)
+                spawnFood();
+            eatFood();
 
-
-        private void init_game_grid()
-        {
-            for (int row = 0; row < row_num; row++)
-            {
-                for (int col = 0; col < col_num; col++)
-                {
-                    this.tiles[row, col] = new Rectangle();
-                    this.tiles[row, col].Margin = new Thickness(1);
-                    this.tiles[row, col].Fill = EMPTY_TILE_COLOR;
-                    main_grid.Children.Add(tiles[row, col]);
-                }
-            }
-        }
 
         private void read_keyboard_input(object sender, KeyEventArgs e)
         {

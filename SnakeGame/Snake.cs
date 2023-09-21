@@ -19,14 +19,16 @@ namespace SnakeGame
         {
             PERIODICITY = new Vector2D(row_num, col_num);
             for (int i = 0; i < 4; i++)
-            {   this.position.Add(new Vector2D(i, 2)); }
+            { this.position.Add(new Vector2D(i, 2)); }
         }
 
-        
+        //Input direzione
+
         public void move(Vector2D direction)
         {
             this.direction = direction;
             Vector2D head = position[position.Count - 1];
+
             this.position.Add( (head + direction) % PERIODICITY);
 
             for(int i=0;i<this.position.Count;i++) {
@@ -38,10 +40,10 @@ namespace SnakeGame
                     }
                 }
             }
-
             this.position.RemoveAt(0);
 
-        }
+        
 
+        }
     }
 }
