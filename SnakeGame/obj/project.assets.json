@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Victoria\\.nuget\\packages\\": {}
+    "C:\\Users\\Gabry\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main\\SnakeGame\\SnakeGame.csproj",
+      "projectUniqueName": "E:\\Projects\\Robust_Young_Snake\\SnakeGame\\SnakeGame.csproj",
       "projectName": "SnakeGame",
-      "projectPath": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main\\SnakeGame\\SnakeGame.csproj",
-      "packagesPath": "C:\\Users\\Victoria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Victoria\\Downloads\\Robust_Young_Snake-main\\SnakeGame\\obj\\",
+      "projectPath": "E:\\Projects\\Robust_Young_Snake\\SnakeGame\\SnakeGame.csproj",
+      "packagesPath": "C:\\Users\\Gabry\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\Robust_Young_Snake\\SnakeGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Victoria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gabry\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -14,6 +14,7 @@ namespace SnakeGame
     {
 
         private static readonly SolidColorBrush EMPTY_TILE_COLOR = new SolidColorBrush(Color.FromRgb(100, 100, 150));
+        // GLI INGEGNERI ELETTRICI NON SONO VERI INGEGNERI
         private static readonly SolidColorBrush SNAKE_TILE_COLOR = new SolidColorBrush(Color.FromRgb(100, 150, 100));
         private static readonly SolidColorBrush FOOD = new SolidColorBrush(Color.FromRgb(255, 130, 50));
 
@@ -24,7 +25,7 @@ namespace SnakeGame
         //Previsto per un frutto la volta. Cambiare con un array di posizioni per piu' frutti
         private int xFood;
         private int yFood;
-        private Boolean foodSpawned = false;
+        private bool foodSpawned = false;
 
         private Rectangle[,] tiles = new Rectangle[row_num, col_num];
 
@@ -47,8 +48,8 @@ namespace SnakeGame
         private void update(object? sender, EventArgs? e)
         {
             Vector2D direction = this.snake.direction;
-            
-         
+
+
             if (debug_console.Content.ToString().Equals("S") && !this.snake.strDirection.Equals("A"))
             {
                 this.snake.strDirection = "G"; //Giu
@@ -98,14 +99,14 @@ namespace SnakeGame
         private void spawnFood()
         {
             Random rnd = new Random();
-            Boolean ok;
+            bool ok;
             int x;
             int y;
 
             do
             {
-                x = rnd.Next(8); // Genera un numero casuale da 0 a 8
-                y = rnd.Next(8); // Genera un numero casuale da 0 a 8
+                x = rnd.Next(row_num); // Genera un numero casuale da 0 a 8
+                y = rnd.Next(col_num); // Genera un numero casuale da 0 a 8
 
                 ok = checkPositionFood(x, y);
             } while (!ok);
@@ -117,9 +118,9 @@ namespace SnakeGame
 
         }
 
-        private Boolean checkPositionFood(int x, int y)
+        private bool checkPositionFood(int x, int y)
         {
-            Boolean b = true;
+            bool b = true;
             foreach (Vector2D point in this.snake.position)
             {
                 if (point.x == x && point.y == y)
@@ -132,36 +133,58 @@ namespace SnakeGame
             return b;
         }
 
+        private void init_game_grid()
+        {
+            for (int row = 0; row < row_num; row++)
+            {
+                for (int col = 0; col < col_num; col++)
+                {
+                    this.tiles[row, col] = new Rectangle();
+                    this.tiles[row, col].Margin = new Thickness(1);
+                    this.tiles[row, col].Fill = EMPTY_TILE_COLOR;
+                    main_grid.Children.Add(tiles[row, col]);
+                }
+            }
+        }
         private void eatFood()
         {
-            if (this.snake.position[^1].x == xFood && this.snake.position[^1].y == yFood)
+            try
             {
-                this.tiles[yFood, xFood].Fill = SNAKE_TILE_COLOR;
-
-                if (this.snake.position[0].y == this.snake.position[1].y)
+                if (this.snake.position[^1].x == xFood && this.snake.position[^1].y == yFood)
                 {
-                    if (((SolidColorBrush)this.tiles[this.snake.position[0].y, this.snake.position[0].x - 1].Fill).Color != SNAKE_TILE_COLOR.Color)
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x - 1, this.snake.position[0].y));
-                    else
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x + 1, this.snake.position[0].y));
-                }
-                else if (this.snake.position[0].x == this.snake.position[1].x)
-                { //Sara' sempre vero altrimenti
-                    if (((SolidColorBrush)this.tiles[this.snake.position[0].y - 1, this.snake.position[0].x].Fill).Color != SNAKE_TILE_COLOR.Color)
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x, this.snake.position[0].y - 1));
-                    else
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x, this.snake.position[0].y + 1));
-                }
+                    this.tiles[yFood, xFood].Fill = SNAKE_TILE_COLOR;
+
+                    if (this.snake.position[0].y == this.snake.position[1].y)
+                    {
+                        if (((SolidColorBrush)this.tiles[this.snake.position[0].y, this.snake.position[0].x - 1].Fill).Color != SNAKE_TILE_COLOR.Color)
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x - 1, this.snake.position[0].y));
+                        else
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x + 1, this.snake.position[0].y));
+                    }
+                    else if (this.snake.position[0].x == this.snake.position[1].x)
+                    { //Sara' sempre vero altrimenti
+                        if (((SolidColorBrush)this.tiles[this.snake.position[0].y - 1, this.snake.position[0].x].Fill).Color != SNAKE_TILE_COLOR.Color)
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x, this.snake.position[0].y - 1));
+                        else
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x, this.snake.position[0].y + 1));
+                    }
 
 
-                foodSpawned = false;
-                counter++;
+                    foodSpawned = false;
+                    counter++;
+                }
+                if (!foodSpawned)
+                    spawnFood();
             }
-            if (!foodSpawned)
-                spawnFood();
-            eatFood();
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
 
 
+
+        }
         private void read_keyboard_input(object sender, KeyEventArgs e)
         {
             debug_console.Content = e.Key;
