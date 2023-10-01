@@ -14,6 +14,7 @@ namespace SnakeGame
     {
 
         private static readonly SolidColorBrush EMPTY_TILE_COLOR = new SolidColorBrush(Color.FromRgb(100, 100, 150));
+        // GLI INGEGNERI ELETTRICI NON SONO VERI INGEGNERI
         private static readonly SolidColorBrush SNAKE_TILE_COLOR = new SolidColorBrush(Color.FromRgb(100, 150, 100));
         private static readonly SolidColorBrush FOOD = new SolidColorBrush(Color.FromRgb(255, 130, 50));
 
@@ -21,11 +22,10 @@ namespace SnakeGame
         public static readonly int col_num = 8;
 
         private int counter = 0;
-        //Previsto un frutto per volta.
+        //Previsto per un frutto la volta. Cambiare con un array di posizioni per piu' frutti
         private int xFood;
         private int yFood;
-        private Boolean foodSpawned = false;
-
+        private bool foodSpawned = false;
 
         private Rectangle[,] tiles = new Rectangle[row_num, col_num];
 
@@ -40,37 +40,40 @@ namespace SnakeGame
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler(update);
             timer.Start();
+
+
         }
 
 
         private void update(object? sender, EventArgs? e)
         {
+            Vector2D direction = this.snake.direction;
 
-            if (debug_console.Content.ToString().Equals("S"))
-            {
-                Vector2D direction = new Vector2D(0, 1); //Giu' = 0,1
-                this.snake.move(direction);
-            }
-            else if (debug_console.Content.ToString().Equals("W"))
-            {
-                Vector2D direction = new Vector2D(0, -1); //Sopra = 0, -1
-                this.snake.move(direction);
-            }
-            else if (debug_console.Content.ToString().Equals("A"))
-            {
-                Vector2D direction = new Vector2D(-1, 0); //Sinistra = -1, 0
-                this.snake.move(direction);
-            }
-            else
-            {
-                Vector2D direction = new Vector2D(1, 0); //Destra = 1,0
-                this.snake.move(direction);
-            }
 
+            if (debug_console.Content.ToString().Equals("S") && !this.snake.strDirection.Equals("A"))
+            {
+                this.snake.strDirection = "G"; //Giu
+                direction = new Vector2D(0, 1); //Giu' = 0,1
+            }
+            else if (debug_console.Content.ToString().Equals("W") && !this.snake.strDirection.Equals("G"))
+            {
+                this.snake.strDirection = "A"; //Alto
+                direction = new Vector2D(0, -1); //Sopra = 0, -1
+            }
+            else if (debug_console.Content.ToString().Equals("A") && !this.snake.strDirection.Equals("D"))
+            {
+                this.snake.strDirection = "S"; //Sinistra
+                direction = new Vector2D(-1, 0); //Sinistra = -1, 0
+            }
+            else if (debug_console.Content.ToString().Equals("D") && !this.snake.strDirection.Equals("S"))
+            {
+                this.snake.strDirection = "D"; //Destra
+                direction = new Vector2D(1, 0); //Destra = 1,0
+            }
+            this.snake.move(direction);
             foreach (Rectangle tile in this.tiles)
             {
                 if (((SolidColorBrush)tile.Fill).Color != FOOD.Color) //Evito di cancellare il cibo
-
                     tile.Fill = EMPTY_TILE_COLOR;
             }
             foreach (Vector2D point in this.snake.position)
@@ -87,22 +90,23 @@ namespace SnakeGame
                 }
                 this.tiles[point.y, point.x].Fill = SNAKE_TILE_COLOR;
             }
+
             if (!foodSpawned)
                 spawnFood();
             eatFood();
         }
+
         private void spawnFood()
         {
             Random rnd = new Random();
-            Boolean ok;
+            bool ok;
             int x;
             int y;
-            
 
             do
             {
-                x = rnd.Next(8);//Genera un numero casuale da 0 a 8
-                y = rnd.Next(8);//Genera un numero casuale da 0 a 8
+                x = rnd.Next(row_num); // Genera un numero casuale da 0 a 8
+                y = rnd.Next(col_num); // Genera un numero casuale da 0 a 8
 
                 ok = checkPositionFood(x, y);
             } while (!ok);
@@ -114,9 +118,9 @@ namespace SnakeGame
 
         }
 
-        private Boolean checkPositionFood(int x, int y)
+        private bool checkPositionFood(int x, int y)
         {
-            Boolean b = true;
+            bool b = true;
             foreach (Vector2D point in this.snake.position)
             {
                 if (point.x == x && point.y == y)
@@ -125,41 +129,8 @@ namespace SnakeGame
                     break;
                 }
             }
+
             return b;
-        }
-
-        private void eatFood()
-        {
-            if (this.snake.position[^1].x == xFood && this.snake.position[^1].y == yFood)
-            {
-                this.tiles[yFood, xFood].Fill = SNAKE_TILE_COLOR;
-
-                if (this.snake.position[0].y == this.snake.position[1].y)
-                {
-                    if (((SolidColorBrush)this.tiles[this.snake.position[0].y,
-                 this.snake.position[0].x - 1].Fill).Color != SNAKE_TILE_COLOR.Color)
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x - 1,
-                            this.snake.position[0].y));
-                    else
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x + 1,
-                            this.snake.position[0].y));
-                }
-                else if (this.snake.position[0].x == this.snake.position[1].x)
-                { //Sarà sempre vero altrimenti
-                    if (((SolidColorBrush)this.tiles[this.snake.position[0].y - 1,
-                        this.snake.position[0].x].Fill).Color != SNAKE_TILE_COLOR.Color)
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x,
-                            this.snake.position[0].y - 1));
-                    else
-                        this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x,
-                            this.snake.position[0].y + 1));
-                }
-
-
-
-                foodSpawned = false;
-                counter++;
-            }
         }
 
         private void init_game_grid()
@@ -175,7 +146,45 @@ namespace SnakeGame
                 }
             }
         }
+        private void eatFood()
+        {
+            try
+            {
+                if (this.snake.position[^1].x == xFood && this.snake.position[^1].y == yFood)
+                {
+                    this.tiles[yFood, xFood].Fill = SNAKE_TILE_COLOR;
 
+                    if (this.snake.position[0].y == this.snake.position[1].y)
+                    {
+                        if (((SolidColorBrush)this.tiles[this.snake.position[0].y, this.snake.position[0].x - 1].Fill).Color != SNAKE_TILE_COLOR.Color)
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x - 1, this.snake.position[0].y));
+                        else
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x + 1, this.snake.position[0].y));
+                    }
+                    else if (this.snake.position[0].x == this.snake.position[1].x)
+                    { //Sara' sempre vero altrimenti
+                        if (((SolidColorBrush)this.tiles[this.snake.position[0].y - 1, this.snake.position[0].x].Fill).Color != SNAKE_TILE_COLOR.Color)
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x, this.snake.position[0].y - 1));
+                        else
+                            this.snake.position.Insert(0, new Vector2D(this.snake.position[0].x, this.snake.position[0].y + 1));
+                    }
+
+
+                    foodSpawned = false;
+                    counter++;
+                }
+                if (!foodSpawned)
+                    spawnFood();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
+
+
+
+        }
         private void read_keyboard_input(object sender, KeyEventArgs e)
         {
             debug_console.Content = e.Key;
